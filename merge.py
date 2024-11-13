@@ -48,26 +48,23 @@ def mergePDF(anfang, ende):
     
     merge_helper(pdf_list)
 
-# def mergingRandomName(pdf1, pdf2):
-#     """Suposed to merge to randomly named pdfs leaving out last page.
+def mergingRandomName(pdf1, pdf2):
+     """Suposed to merge to randomly named pdfs leaving out last page.
     
-#     Args:
-#         pdf1 (String): Merging PDF
-#         pdf2 (String): Merging PDF
-#     """
-#     merger = PdfWriter()
+     Args:
+         pdf1 (String): Merging PDF
+         pdf2 (String): Merging PDF
+     """
+     merger = PdfWriter()
     
-#     pdfReader = PyPDF2.PdfReader(pdf1)
-#     max1 = len(pdfReader.pages) 
-#     merger.append(pdf1, pages=(0,max1-1))
+     pdfReader = PyPDF2.PdfReader(pdf1)
+     max1 = len(pdfReader.pages) 
+     merger.append(pdf1, pages=(0,max1))
     
-#     pdfReader = PyPDF2.PdfReader(pdf2)
-#     max2 = len(pdfReader.pages) 
-#     merger.append(pdf2, pages=(0,max2-1))
+     pdfReader = PyPDF2.PdfReader(pdf2)
+     max2 = len(pdfReader.pages) 
+     merger.append(pdf2, pages=(0,max2))
 
-#     merger.write("res.pdf")
-#     merger.close()
-
-#mergingRandomName("01.pdf", "02.pdf")
-mergePDF(1,2)
+     merger.write("randomMerge.pdf")
+     merger.close()
 
