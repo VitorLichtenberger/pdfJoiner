@@ -12,3 +12,7 @@ Gui tkinker
 pip install tk
 https://tkdocs.com/
 https://docs.python.org/3/library/tk.html
+
+Making .exe
+pip install pyinstaller
+pyinstaller --onefile -w 'filename.py'
