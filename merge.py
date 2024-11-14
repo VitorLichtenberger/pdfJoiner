@@ -48,7 +48,7 @@ def mergePDF(pdf_list):
     
     merge_helper(pdf_list)
 
-def mergingRandomName(pdf1, pdf2):
+def mergingRandomName(pdf1, pdf2, cut):
      """Suposed to merge to randomly selected pdfs.
     
      Args:
@@ -59,11 +59,11 @@ def mergingRandomName(pdf1, pdf2):
     
      pdfReader = PyPDF2.PdfReader(pdf1)
      max1 = len(pdfReader.pages) 
-     merger.append(pdf1, pages=(0,max1))
+     merger.append(pdf1, pages=(0,max1-cut))
     
      pdfReader = PyPDF2.PdfReader(pdf2)
      max2 = len(pdfReader.pages) 
-     merger.append(pdf2, pages=(0,max2))
+     merger.append(pdf2, pages=(0,max2-cut))
 
      merger.write("randomMerge.pdf")
      merger.close()

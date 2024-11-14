@@ -15,7 +15,8 @@ def btnselect_clicked():
 def btnOk2_clicked():
     x = entry3.get()
     y = entry4.get()
-    mergingRandomName(x, y)
+    cut = int(spinNumber.get())
+    mergingRandomName(x, y, cut)
     
 
 def btnCancel_clicked():
@@ -108,10 +109,19 @@ entry4.grid(column=1, row=6)
 # Bind the entry4 box to open the file dialog on click
 entry4.bind("<Button-1>", lambda e: open_file_dialog(entry4))
 
+lbl = Label(window, text="Number of pages to cut at the End: ")
+lbl.grid(column=0, row=7)
+
+# Create the Spinbox to get the number guess...
+txt_spin_value = 1
+spinNumber = Spinbox(window, from_ = 1, to = 99, textvariable=txt_spin_value)
+spinNumber.grid(column=1, row=7)
+
 btnOk2 = Button(window, text="Ok", command=btnOk2_clicked)
-btnOk2.grid(column=0, row=7)
+btnOk2.grid(column=0, row=8)
+
 
 btnCancel = Button(window, text="Cancel", command=btnCancel_clicked)
-btnCancel.grid(row=8)
+btnCancel.grid(row=9)
 
 window.mainloop()
