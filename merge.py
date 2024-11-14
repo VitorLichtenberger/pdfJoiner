@@ -33,23 +33,23 @@ def merge_helper(pdfs):
         max = len(pdfReader.pages) 
         merger.append(pdf, pages=(0,max-1))
 
-    merger.write("res.pdf")
+    merger.write("res2.pdf")
     merger.close()
     
 
-def mergePDF(anfang, ende):
+def mergePDF(pdf_list):
     """Funktion is suposed to merge a multiple number of PDFs all with beginning 01-XX.pdf
 
     Args:
         anfang (Int): Start of the PDFs
         ende (Int): End of PDFs
     """
-    pdf_list = listHelper(anfang,ende)
+    #pdf_list = listHelper()
     
     merge_helper(pdf_list)
 
 def mergingRandomName(pdf1, pdf2):
-     """Suposed to merge to randomly named pdfs leaving out last page.
+     """Suposed to merge to randomly selected pdfs.
     
      Args:
          pdf1 (String): Merging PDF
