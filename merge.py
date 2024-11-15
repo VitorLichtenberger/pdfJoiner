@@ -23,48 +23,46 @@ def listHelper(x,y):
             pdfs.append(str(j) + ".pdf")
         j += 1
     return pdfs
-def merge_helper(pdfs):
-    #Merging
+
+def mergePDF(pdf_list, cut):
+    """Funktion is suposed to merge a multiple number of PDFs in the list. Cuts number of pages at the end.
+
+    Args:
+        pdf_list (List): List of PDFs to merge.
+        cut (Int) : Numger of Pages to cut at the end.
+    """
+    #pdf_list = listHelper()
     merger = PdfWriter()
 
-    for pdf in pdfs:
+    for pdf in pdf_list:
     
         pdfReader = PyPDF2.PdfReader(pdf)
         max = len(pdfReader.pages) 
-        merger.append(pdf, pages=(0,max-1))
+        merger.append(pdf, pages=(0,max-cut))
 
-    merger.write("res2.pdf")
+    merger.write("foldermerge.pdf")
     merger.close()
-    
 
-def mergePDF(pdf_list):
-    """Funktion is suposed to merge a multiple number of PDFs all with beginning 01-XX.pdf
-
-    Args:
-        anfang (Int): Start of the PDFs
-        ende (Int): End of PDFs
-    """
-    #pdf_list = listHelper()
-    
-    merge_helper(pdf_list)
-
-def mergingRandomName(pdf1, pdf2, cut):
-     """Suposed to merge to randomly selected pdfs.
+def mergingRandomName(pdf1, pdf2, cut_page1, cut_page2):
+     """Suposed to merge to randomly selected pdfs. And cut the Pages at the end acording to the input.
     
      Args:
          pdf1 (String): Merging PDF
          pdf2 (String): Merging PDF
+         cut_page1 (Int): Number of Pages to cut pdf1
+         cut_page2 (Int): Number of Pages to cut pdf2
+         
      """
      merger = PdfWriter()
     
      pdfReader = PyPDF2.PdfReader(pdf1)
      max1 = len(pdfReader.pages) 
-     merger.append(pdf1, pages=(0,max1-cut))
+     merger.append(pdf1, pages=(0,max1-cut_page1))
     
      pdfReader = PyPDF2.PdfReader(pdf2)
      max2 = len(pdfReader.pages) 
-     merger.append(pdf2, pages=(0,max2-cut))
+     merger.append(pdf2, pages=(0,max2-cut_page2))
 
-     merger.write("randomMerge.pdf")
+     merger.write("twoPDFmerge.pdf")
      merger.close()
 

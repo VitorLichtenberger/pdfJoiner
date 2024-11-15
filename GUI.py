@@ -10,13 +10,15 @@ import os
 # Define the function to call when ButtonOk is clicked...
 def btnselect_clicked():
     pdf_list = select_all_pdfs()
-    mergePDF(pdf_list)
+    cut = int(spinNumber1.get())
+    mergePDF(pdf_list,cut)
     
 def btnOk2_clicked():
     x = entry3.get()
     y = entry4.get()
-    cut = int(spinNumber.get())
-    mergingRandomName(x, y, cut)
+    cut_page1 = int(spinNumber2.get())
+    cut_page2 = int(spinNumber3.get()) 
+    mergingRandomName(x, y, cut_page1, cut_page2)
     
 
 def btnCancel_clicked():
@@ -33,7 +35,7 @@ def open_file_dialog(ent):
 def select_all_pdfs():
     # Open a dialog to select a folder
     folder_path = filedialog.askdirectory()
-    list_of_PDF = []
+    
     # Check if a folder was selected
     if folder_path:
         # Use glob to find all PDFs in the selected folder
@@ -51,7 +53,7 @@ window = Tk()
 window.title("PDFJOINER")
 
 # Set the Windows size...
-window.geometry('900x600')
+window.geometry('1000x430')
 
 # Scale it up so we can see it better...
 window.tk.call('tk', 'scaling', 3.0)
@@ -61,44 +63,43 @@ window.tk.call('tk', 'scaling', 3.0)
 #############
 
 # Create our label...
-lbl = Label(window, text="Here you can Concatenate all PDFs in a Folder")
+lbl = Label(window, text="Here you can Concatenate all PDFs in a Folder", font='Helvetica 9 bold')
 lbl.grid(column=0, row=0)
 
-# # Create our label...
-# lbl = Label(window, text="Enter a start number:")
-# lbl.grid(column=0, row=1)
+lbl = Label(window, text="Number of pages to cut at the End of each PDF: ")
+lbl.grid(column=0, row=1)
 
-# # Create the entry box
-# entry1 = Entry(window, textvariable="Start")
-# entry1.grid(column=1, row=1)
-
-# # Create our label...
-# lbl = Label(window, text="Enter a end number:")
-# lbl.grid(column=0, row=2)
-
-# # Create the entry box
-# entry2 = Entry(window, textvariable="End")
-# entry2.grid(column=1, row=2)
-
-
+# Create the Spinbox to get the number guess...
+txt_spin_value = 0
+spinNumber1 = Spinbox(window, from_ = 0, to = 99, textvariable=txt_spin_value)
+spinNumber1.grid(column=1, row=1)
 
 # Button to open the directory dialog and list PDFs
 btn_select_pdfs = Button(window, text="Select PDFs", command=btnselect_clicked)
-btn_select_pdfs.grid(column=1, row=0)
+btn_select_pdfs.grid(column=0, row=2)
+
 
 
 # Create our label...
-lbl = Label(window, text="Here you can Concatenate two PDFs")
-lbl.grid(column=0, row=4)
+lbl = Label(window, text="Here you can Concatenate two PDFs", font='Helvetica 9 bold')
+lbl.grid(column=0, row=3)
 
 # Create our label...
 lbl = Label(window, text="Select first: ")
-lbl.grid(column=0, row=5)
+lbl.grid(column=0, row=4)
 
 entry3 = Entry(window)
-entry3.grid(column=1, row=5)
+entry3.grid(column=1, row=4)
 # Bind the entry4 box to open the file dialog on click
 entry3.bind("<Button-1>", lambda e: open_file_dialog(entry3))
+
+lbl = Label(window, text="Number of pages to cut at the End: ")
+lbl.grid(column=0, row=5)
+
+# Create the Spinbox to get the number guess...
+txt_spin_value = 1
+spinNumber2 = Spinbox(window, from_ = 0, to = 99, textvariable=txt_spin_value)
+spinNumber2.grid(column=1, row=5)
 
 # Create our label...
 lbl = Label(window, text="Select second: ")
@@ -113,15 +114,15 @@ lbl = Label(window, text="Number of pages to cut at the End: ")
 lbl.grid(column=0, row=7)
 
 # Create the Spinbox to get the number guess...
-txt_spin_value = 1
-spinNumber = Spinbox(window, from_ = 1, to = 99, textvariable=txt_spin_value)
-spinNumber.grid(column=1, row=7)
+txt_spin_value = 2
+spinNumber3 = Spinbox(window, from_ = 0, to = 99, textvariable=txt_spin_value)
+spinNumber3.grid(column=1, row=7)
 
 btnOk2 = Button(window, text="Ok", command=btnOk2_clicked)
 btnOk2.grid(column=0, row=8)
 
 
 btnCancel = Button(window, text="Cancel", command=btnCancel_clicked)
-btnCancel.grid(row=9)
+btnCancel.grid(column=1, row=8)
 
 window.mainloop()
