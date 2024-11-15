@@ -1,18 +1,21 @@
 # pdfJoiner
-Small projekt set up a Program that can join PDFs.
+Program that can join PDFs in two ways. Eather all PDFs in a folder or two PDFs in random directorys. In both ways you can decite how many pages schoult be cut at the end.
+Please fell free to add issues at witch I can work or posible improvements.
+The Program EXE can be found in the dist Folder
+Wen using the Program the output is created in the folder in wich it is being used.
 
-For to work you need
-Packages:
-pypdf and PyPDF2
-Just install them in windows cmd with:
+Packages im using:
+
 pip install pypdf
 pip install PyPDF2
-
-Gui tkinker
+pip install pyinstaller
 pip install tk
+
+
+Usefull:
+
 https://tkdocs.com/
 https://docs.python.org/3/library/tk.html
 
-Making .exe
-pip install pyinstaller
+Making EXE:
 pyinstaller --onefile -w 'filename.py'
