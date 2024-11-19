@@ -1,4 +1,7 @@
-
+from PIL import Image
+from fpdf import FPDF
+from docx import Document
+import os
 from pypdf import PdfWriter
 
 import PyPDF2
@@ -66,3 +69,54 @@ def mergingRandomName(pdf1, pdf2, cut_page1, cut_page2):
      merger.write("twoPDFmerge.pdf")
      merger.close()
 
+def pdfConvert(conv):
+    """Converts a jpg, Word (.docx), or text (.txt) file to a PDF and saves it in the same folder.
+
+    Args:
+        conv (str): Path to the file.
+    """
+    # Get the file extension and base name
+    file_path, file_ext = os.path.splitext(conv)
+    output_pdf = file_path + ".pdf"
+
+    try:
+        # Handle image files
+        if file_ext.lower() in [".jpg", ".jpeg", ".png"]:
+            image = Image.open(conv)
+            rgb_image = image.convert("RGB")  # Ensure compatibility
+            rgb_image.save(output_pdf)
+            print(f"Image file converted and saved as {output_pdf}")
+        
+        # Handle Word documents
+        elif file_ext.lower() == ".docx":
+            pdf = FPDF()
+            pdf.set_auto_page_break(auto=True, margin=15)
+            pdf.add_page()
+            pdf.set_font("Arial", size=12)
+
+            doc = Document(conv)
+            for para in doc.paragraphs:
+                pdf.multi_cell(0, 10, para.text)
+            pdf.output(output_pdf)
+            print(f"Word document converted and saved as {output_pdf}")
+        
+        # Handle text files
+        elif file_ext.lower() == ".txt":
+            pdf = FPDF()
+            pdf.set_auto_page_break(auto=True, margin=15)
+            pdf.add_page()
+            pdf.set_font("Arial", size=12)
+
+            with open(conv, "r", encoding="utf-8") as file:
+                for line in file:
+                    pdf.multi_cell(0, 10, line.strip())
+            pdf.output(output_pdf)
+            print(f"Text file converted and saved as {output_pdf}")
+        
+        else:
+            print("Unsupported file format. Please provide a .jpg, .docx, or .txt file.")
+    
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    
+pdf = pdfConvert("Grid.JPG")
