@@ -10,6 +10,8 @@ pip install pypdf
 pip install PyPDF2
 pip install pyinstaller
 pip install tk
+pip install fpdf
+pip install python-docx
 
 
 Usefull:
