@@ -42,9 +42,10 @@ def mergePDF(pdf_list, cut):
         pdfReader = PyPDF2.PdfReader(pdf)
         max = len(pdfReader.pages) 
         merger.append(pdf, pages=(0,max-cut))
-
+        
     merger.write("foldermerge.pdf")
     merger.close()
+    print("PDFs merged and saved as foldermerge.pdf")
 
 def mergingRandomName(pdf1, pdf2, cut_page1, cut_page2):
      """Suposed to merge to randomly selected pdfs. And cut the Pages at the end acording to the input.
@@ -68,6 +69,7 @@ def mergingRandomName(pdf1, pdf2, cut_page1, cut_page2):
 
      merger.write("twoPDFmerge.pdf")
      merger.close()
+     print("PDFs merged and saved as twoPDFmerge.pdf")
 
 def pdfConvert(conv):
     """Converts a jpg, Word (.docx), or text (.txt) file to a PDF and saves it in the same folder.
@@ -118,5 +120,3 @@ def pdfConvert(conv):
     
     except Exception as e:
         print(f"An error occurred: {e}")
-    
-pdf = pdfConvert("Grid.JPG")
