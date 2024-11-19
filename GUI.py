@@ -60,9 +60,6 @@ window.title("PDFJOINER")
 # Set the Windows size...
 window.geometry('1000x430')
 
-# Add a vertical scrollbar to the window
-# scrollbar = Scrollbar(window)
-# scrollbar.pack(side="right", fill="y")  # Pack it on the right and fill vertically
 
 # Scale it up so we can see it better...
 window.tk.call('tk', 'scaling', 3.0)
