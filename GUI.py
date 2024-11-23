@@ -53,6 +53,18 @@ def select_all_pdfs():
         else:
             print("No PDF files found in the selected directory.")
     
+#Dark/light mode button
+def dark_mode():
+    if window.cget('bg') == 'white':
+        window.configure(bg='gray14')
+        for child in window.winfo_children():
+            child.configure(bg='gray14', fg='white')
+    else:
+        window.configure(bg='white')
+        for child in window.winfo_children():
+            child.configure(bg='white', fg='gray14')
+
+
 # Create the Window and give it a title...
 window = Tk()
 window.title("PDFJOINER")
@@ -63,6 +75,12 @@ window.geometry('1000x430')
 
 # Scale it up so we can see it better...
 window.tk.call('tk', 'scaling', 3.0)
+
+# Set the background color of the window
+window.configure(bg='white')
+
+# Set the color of the child widgets
+window.option_add('*background', 'white')
 
 
 
@@ -133,6 +151,11 @@ btnOk3.grid(column=0, row=10, pady=5)
 
 btnCancel = Button(window, text="Cancel", command=btnCancel_clicked)
 btnCancel.grid(column=1, row=11, pady=10)
+
+dark_mode = Button(window, text="Dark Mode", command=dark_mode)
+dark_mode.grid(column=0, row=11, pady=10)
+
+
 
 # Start the Tkinter event loop
 window.mainloop()
