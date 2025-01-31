@@ -1,8 +1,12 @@
 # pdfJoiner
-Program that can join PDFs in two ways. Eather all PDFs in a folder or two PDFs in random directorys. In both ways you can decite how many pages schoult be cut at the end.
-Please fell free to add issues at witch I can work or posible improvements.
-The Program EXE can be found in the dist Folder
-Wen using the Program the output is created in the folder in wich it is being used.
+This program allows you to merge PDFs in two ways:
+
+-Merge all PDFs in a folder
+-Merge two PDFs from different directories
+
+In both cases, you can choose how many pages should be removed from the end.
+The output file will be created in the same folder where the program is executed.
+The executable file (EXE) can be found in the dist folder.
 
 Packages im using:
 
