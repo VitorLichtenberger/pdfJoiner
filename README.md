@@ -1,8 +1,7 @@
 # pdfJoiner
 This program allows you to merge PDFs in two ways:
 
--Merge all PDFs in a folder
--Merge two PDFs from different directories
+-Merge all PDFs in a folder or Merge two PDFs from different directories
 
 In both cases, you can choose how many pages should be removed from the end.
 The output file will be created in the same folder where the program is executed.
